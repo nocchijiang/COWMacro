@@ -340,6 +340,10 @@ public struct COWIncludedMacro: AccessorMacro, NameLookupable {
         yield \(storageName).\(identifier)
       }
       """
+
+    if varDecl.bindingKeyword.tokenKind == .keyword(.let) {
+      return [readAccessor]
+    }
     
     let modifyAccessor: AccessorDeclSyntax =
       """
